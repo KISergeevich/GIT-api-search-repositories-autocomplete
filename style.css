@@ -65,6 +65,11 @@ input, textarea {
     font-family: 'Roboto';
     font-style: 'Regular';
     font-size: 30px;
+    cursor: pointer;
+}
+
+.select__item:hover {
+    background-color: #65CDF9;
 }
 
 .select__item:first-of-type {
@@ -98,6 +103,15 @@ input, textarea {
 }
 .chosen-rep:first-of-type {
     border-top: 1px solid black;
+}
+
+.chosen-rep__name {
+    max-width: 350px;
+    box-sizing: border-box;
+    flex: 1 1 0;
+    white-space: nowrap; 
+    overflow: hidden;   
+    text-overflow: ellipsis;
 }
 
 .chosen-rep__delete {

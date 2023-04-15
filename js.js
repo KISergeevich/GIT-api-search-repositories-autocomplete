@@ -33,7 +33,7 @@ class Select {
         this.$el = document.querySelector(selector);
         this.input = document.querySelector('.select__input');
         this.dropdown = document.querySelector('.select__dropdown');
-
+        this.chosen = document.querySelector('.chosen-reps');
 
         this.setup();
     }
@@ -49,6 +49,11 @@ class Select {
             .map((rep) => {
                 const li = this.createElement('li', 'select__item');
                 li.innerHTML = `<span class="select-item__name">${rep.full_name}</span>`;
+                li.addEventListener('click', () => {
+                    this.addPinkElement(rep.id, rep.name, rep.owner.login, rep.stargazers_count);
+                    this.clearList();
+                    this.input.value = '';
+                })
                 return li;
             })
             .forEach((li) => {
@@ -56,6 +61,23 @@ class Select {
             });
 
         this.dropdown.append(ul);
+    }
+
+    addPinkElement(id, name, owner, stars) {
+        const li = this.createElement('li', 'chosen-rep');
+        li.id = id;
+        li.innerHTML = `
+        <div class="chosen-rep__info">
+            <div class="chosen-rep__name">Name: ${name}</div>
+            <div class="chosen-rep__owner">Owner: ${owner}</div>
+            <div class="chosen-rep__stars">Stars: ${stars}</div>
+        </div>`;
+        const deleteDiv = this.createElement('div', 'chosen-rep__delete');
+        deleteDiv.addEventListener('click', () => {
+            this.chosen.removeChild(li);
+        })
+        li.append(deleteDiv);
+        this.chosen.append(li);
     }
 
     clearList() {
