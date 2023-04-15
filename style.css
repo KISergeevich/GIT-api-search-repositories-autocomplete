@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #C4C4C4;
+    display: flex;
+    padding: 0;
+    box-sizing:border-box;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+*::after, *::before {
+    box-sizing: inherit;
+}
+ul, li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+input, textarea {
+    cursor: pointer;
+}
+.select {
+    position: relative;
+    width: 500px;
+}
+
+.select__input {
+    width: 500px;
+    height: 61px;
+    background-color: white;
+    margin-top: 61px;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+    font-style: 'Regular';
+    font-size: 48px;
+}
+
+.select__dropdown {
+    background-color: #E3E3E3;
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.select__dropdown--open {
+    display: block;
+}
+
+.select__item {
+    height: 44px;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 1rem;
+    align-items: center;
+    border: 2px solid black;
+    border-top: 0px;
+    font-family: 'Roboto';
+    font-style: 'Regular';
+    font-size: 30px;
+}
+
+.select__item:first-of-type {
+    border-top: 2px solid black;
+}
+.select-item__name {
+    box-sizing: border-box;
+    flex: 1 1 0;
+    white-space: nowrap; 
+    overflow: hidden;   
+    text-overflow: ellipsis;
+}
+.chosen-reps {
+    margin-top: 265px;
+    width: 500px;
+    box-sizing: border-box;
+}
+.chosen-rep {
+    height: 100px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    background-color: #E27BEB;
+    border-top: 0;
+    font-family: 'Roboto';
+    font-style: 'Regular';
+    font-size: 24px;
+    padding: 8px 34px 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chosen-rep:first-of-type {
+    border-top: 1px solid black;
+}
+
+.chosen-rep__delete {
+    width: 46px;
+    height: 42px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='46' height='42' viewBox='0 0 46 42' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M2 40.5L44 2' stroke='%23FF0000' stroke-width='4'/%3e%3cpath d='M44 40.5L2 2' stroke='%23FF0000' stroke-width='4'/%3e%3c/svg%3e ");    
+}
