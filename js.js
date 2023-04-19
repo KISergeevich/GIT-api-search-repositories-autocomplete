@@ -1,31 +1,9 @@
-function throttle(func, ms) {
-
-    let isThrottled = false,
-        savedArgs,
-        savedThis;
-
-    function wrapper() {
-
-        if (isThrottled) {
-            savedArgs = arguments;
-            savedThis = this;
-            return;
-        }
-
-        func.apply(this, arguments);
-
-        isThrottled = true;
-
-        setTimeout(function () {
-            isThrottled = false;
-            if (savedArgs) {
-                wrapper.apply(savedThis, savedArgs);
-                savedArgs = savedThis = null;
-            }
-        }, ms);
-    }
-
-    return wrapper;
+function debounce(func, timeout) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
 }
 
 class Select {
@@ -39,8 +17,8 @@ class Select {
     }
 
     setup() {
-        const throtled = throttle(this.processSearch, 2000);
-        this.input.addEventListener("keyup", throtled.bind(this));
+        const debounced = debounce(this.processSearch, 500);
+        this.input.addEventListener("keyup", debounced.bind(this));
     }
 
     generateList(reps) {
