@@ -87,8 +87,8 @@ class Select {
         }
     }
 
-    async processSearch() {
-        const search = this.input.value;
+    async processSearch(event) {
+        const search = event.target.value;
         this.clearList();
         if (search !== undefined && search !== "") {
             const result = await this.fetchReps(search);
