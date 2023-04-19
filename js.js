@@ -48,7 +48,8 @@ class Select {
         reps
             .map((rep) => {
                 const li = this.createElement('li', 'select__item');
-                li.innerHTML = `<span class="select-item__name">${rep.full_name}</span>`;
+                const span = this.createElement('span', 'select-item__name', rep.full_name);
+                li.append(span);
                 li.addEventListener('click', () => {
                     this.addPinkElement(rep.id, rep.name, rep.owner.login, rep.stargazers_count);
                     this.clearList();
@@ -66,12 +67,16 @@ class Select {
     addPinkElement(id, name, owner, stars) {
         const li = this.createElement('li', 'chosen-rep');
         li.id = id;
-        li.innerHTML = `
-        <div class="chosen-rep__info">
-            <div class="chosen-rep__name">Name: ${name}</div>
-            <div class="chosen-rep__owner">Owner: ${owner}</div>
-            <div class="chosen-rep__stars">Stars: ${stars}</div>
-        </div>`;
+        const info = this.createElement('div', 'chosen-rep__info');
+        const repName = this.createElement('div', 'chosen-rep__name', `Name: ${name}`);
+        const repOwner = this.createElement('div', 'chosen-rep__owner', `Owner: ${owner}`);
+        const repStars = this.createElement('div', 'chosen-rep__stars', `Stars: ${stars}`);
+
+        info.append(repName);
+        info.append(repOwner);
+        info.append(repStars);
+        li.append(info);
+
         const deleteDiv = this.createElement('div', 'chosen-rep__delete');
         deleteDiv.addEventListener('click', () => {
             this.chosen.removeChild(li);
@@ -81,13 +86,16 @@ class Select {
     }
 
     clearList() {
-        this.dropdown.innerHTML = '';
+        this.dropdown.innerHTML = ''; //тут невозможна xss атака.
     }
 
-    createElement(elementName, className) {
+    createElement(elementName, className, content) {
         const element = document.createElement(elementName);
         if (className) {
             element.classList.add(className);
+        }
+        if (content) {
+            element.innerText = content;
         }
         return element;
     }
