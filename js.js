@@ -78,10 +78,10 @@ class Select {
         return element;
     }
     async fetchReps(search) {
-        const response = await fetch(`https://api.github.com/search/repositories?q=${search}`);
+        const response = await fetch(`https://api.github.com/search/repositories?q=${search}&per_page=5`);
         if (response.ok) {
             const json = await response.json();
-            return json.items.slice(0, 5);
+            return json.items;
         } else {
             return [];
         }
