@@ -18,7 +18,7 @@ class Select {
 
     setup() {
         const debounced = debounce(this.processSearch, 500);
-        this.input.addEventListener("keyup", debounced.bind(this));
+        this.input.addEventListener("input", debounced.bind(this));
     }
 
     generateList(reps) {
